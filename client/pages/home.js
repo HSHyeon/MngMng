@@ -18,23 +18,24 @@ const param = new URLSearchParams(params);
 const page = param.get('page'); // 5
 
 function renderProducts(data) {
-  const productList = document.getElementById('product-list');
-  //TODO 카테고리 버튼 누를때마다 바뀌어야 되니까 초기화코드 추가해야함
-
-  while (productList.hasChildNodes()) {
-    productList.removeChild(productList.firstChild);
-  }
-  const products = data; // JSON 데이터에서 제품 목록을 가져옴
-
-  // 가져온 데이터를 사용하여 동적으로 제품 목록 생성
-  if (products < 1) {
-    productList.innerHTML += `<p class='text-lg text-center text-gray-500 font-bold py-10'>상품 준비중입니다...</p>`;
-  }
-  products.forEach((product) => {
-    // 제품 항목을 생성하고 추가하는 코드
-    const productCard = document.createElement('div');
-    productCard.classList.add('product-card');
-    productCard.innerHTML = `
+    const productList = document.getElementById('product-list');
+    //TODO 카테고리 버튼 누를때마다 바뀌어야 되니까 초기화코드 추가해야함
+  
+    while ( productList.hasChildNodes() )
+    {
+      productList.removeChild( productList.firstChild );       
+    }
+    const products = data; // JSON 데이터에서 제품 목록을 가져옴
+  
+    // 가져온 데이터를 사용하여 동적으로 제품 목록 생성
+    if(products < 1){
+      productList.innerHTML += `<p class='text-lg text-center text-gray-500 font-bold py-10'>상품 준비중입니다...</p>`
+    }
+    products.forEach((product) => {
+      // 제품 항목을 생성하고 추가하는 코드
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+      productCard.innerHTML = `
       <div class=" " id="product-${product._id}">
       <div class="relative overflow-hidden">
             <img class="bg-white object-cover w-full" 
@@ -54,36 +55,59 @@ function renderProducts(data) {
       location.href = `/detail/?id=${product._id}`;
     });
 
-    // 모든 장바구니 버튼에 클릭 핸들러를 추가
-    const cartbtn = document.querySelector(`#cart-${product._id}`);
-
-    cartbtn.addEventListener('click', function () {
-      console.log(product._id);
-      buttonClickHandler(product);
-    });
-  });
-}
-
-function renderPages(datalen) {
-  const pagelist = document.getElementById('pages');
-  let puthtml = '';
-  if (datalen > 1) {
-    for (let i = 1; i <= datalen; i++) {
-      puthtml += `<div><input type='radio' id='${i}' name= 'page' class='hidden peer' value = '${i}'><label for='${i}' id='page' name='${i}' class='p-3 peer-checked:text-teal-600 peer-checked:font-bold peer-checked:border-b-2'>${i}</label></input></div>`;
-    }
-  }
-  if (pagelist) pagelist.innerHTML = puthtml;
-  if (datalen > 1) {
-    const pages = document.querySelectorAll('#page');
-    if (page) {
-      pages[page - 1].parentNode.firstChild.checked = true;
-    } else pages[0].parentNode.firstChild.checked = true;
-    pages.forEach((page) => {
-      page.addEventListener('click', function (e) {
+  function renderPages(datalen){
+    const pagelist = document.getElementById('pages');
+    let puthtml = '';
+    if(datalen>1)
+      {for(let i=1;i<= datalen;i++){
+        puthtml += `<div><input type='radio' id='${i}' name= 'page' class='hidden peer' value = '${i}'><label for='${i}' id='page' name='${i}' class='p-3 peer-checked:text-teal-600 peer-checked:font-bold peer-checked:border-b-2'>${i}</label></input></div>`
+      }}
+  if(pagelist) pagelist.innerHTML = puthtml;
+  if(datalen>1){
+  const pages = document.querySelectorAll('#page');
+  if(page){pages[page-1].parentNode.firstChild.checked = true;}
+  else pages[0].parentNode.firstChild.checked= true;
+  pages.forEach((page) => {
+    page.addEventListener('click', function(e){
         console.log(e.target.innerHTML);
-        location = `?page=${e.target.innerHTML}`;
-      });
+        location = `?page=${e.target.innerHTML}`
     });
+  });}
+  }
+  
+  
+
+  function renderCategories(data) {
+    const categoryList = document.getElementById('category-list');
+    console.log(dog);
+    if(token && (dog === "1")) {recommend.style.display = 'block';}
+    const categories = data.message; // JSON 데이터에서 제품 목록을 가져옴
+    console.log(data.message);
+    // 가져온 데이터를 사용하여 동적으로 제품 목록 생성
+    categories.forEach((category) => {
+      // 제품 항목을 생성하고 추가하는 코드
+        const categoryCard = document.createElement('div');
+        categoryCard.classList.add('category-card');
+        categoryCard.innerHTML = `
+
+        <input type='radio' id = 'category-${category._id}' name = 'buttons'
+        class="hidden peer">
+        <label for="category-${category._id}" class="border-l inline-flex items-center justify-between  px-6 my-4 text-lg text-gray-500 bg-white cursor-pointer  peer-checked:text-teal-600 ">
+     ${category.name}</label></input> `;
+        
+        if (categoryList) {
+          categoryList.appendChild(categoryCard);
+        }
+        const btnCategory = document.querySelector(`#category-${category._id}`)
+        btnCategory.addEventListener('click',function(){
+          
+          console.log(category.name);
+          
+          getProducts(`${API_BASE_URL}/categories/${category.name}/products`)
+        })
+        categories[categories.length-1]
+   
+      });
   }
 }
 
