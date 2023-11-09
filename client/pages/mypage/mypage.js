@@ -42,8 +42,9 @@ const deleteUser = () => {
 
 deletBtn.addEventListener('click', function(){
    
-    new Swal('정말 탈퇴하시겠습니까?', '', 'warning').then(() => {
-        deleteUser();
+    new Swal({title:'정말 탈퇴하시겠습니까?',showDenyButton: true ,denyButtonText:'취소', confirmButtonText:'확인', icon:'warning'}).then((result) => {
+        if(result.isConfirmed) deleteUser()
+        
     });
     
 })

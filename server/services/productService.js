@@ -5,6 +5,7 @@ exports.getAllProduct = async (page, perPage) => {
     const totalProducts = await models.Product.countDocuments();
     const totalPages = Math.ceil(totalProducts / perPage);
     const products = await models.Product.find({})
+      .populate('category')
       .skip((page - 1) * perPage)
       .limit(perPage)
       .exec();

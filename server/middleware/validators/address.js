@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 exports.create = Joi.object({
   name: Joi.string().required(),
-  zipCode: Joi.number().min(10000).max(99999).required(),
+  zipCode: Joi.number().min(1000).max(99999).required(),
   detailAddress: Joi.string().required(),
   recipient: Joi.string().required(),
   phone: Joi.number().required(),

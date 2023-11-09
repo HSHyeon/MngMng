@@ -92,12 +92,32 @@
                   for="request"
                   class="block mb-2 text-sm font-medium text-gray-900"
                   >요청정보</label>
-                <input
+                <select
                   type="text"
                   name="request"
                   id="request"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                 required=""/></div>
+                 required="">
+                 <option value="0">
+                  배송시 요청사항을 선택해 주세요.
+                </option>
+                <option value="1" class="select-option">
+                  직접 수령하겠습니다.
+                </option>
+                <option value="2" class="select-option">
+                  배송 전 연락바랍니다.
+                </option>
+                <option value="3" class="select-option">
+                  부재 시 경비실에 맡겨주세요.
+                </option>
+                <option value="4" class="select-option">
+                  부재 시 문 앞에 놓아주세요.
+                </option>
+                <option value="5" class="select-option">
+                  부재 시 택배함에 넣어주세요.
+                </option>
+                <option value="6" class="select-option">없음</option>
+                </select></div>
               </p>
             </form>
     
