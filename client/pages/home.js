@@ -93,7 +93,7 @@ function renderCategories(data) {
   if (token && dog === '1') {
     recommend.style.display = 'block';
   }
-  const categories = data.message; // JSON 데이터에서 제품 목록을 가져옴
+  const categories = data.list; // JSON 데이터에서 제품 목록을 가져옴
   console.log(data.message);
   // 가져온 데이터를 사용하여 동적으로 제품 목록 생성
   categories.forEach((category) => {
@@ -101,13 +101,11 @@ function renderCategories(data) {
     const categoryCard = document.createElement('div');
     categoryCard.classList.add('category-card');
     categoryCard.innerHTML = `
+
         <input type='radio' id = 'category-${category._id}' name = 'buttons'
         class="hidden peer">
-        <label for="category-${categories._id}" class="inline-flex items-center justify-between  p-4 text-lg text-gray-500 bg-white cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-teal-500 peer-checked:border-teal-600 peer-checked:text-teal-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-     ${categories.name}</label></input> `;
-
-    //     <label for="category-${category._id}" class="border-l inline-flex items-center justify-between  px-6 my-4 text-lg text-gray-500 bg-white cursor-pointer  peer-checked:text-teal-600 ">
-    //  ${category.name}</label></input> `;
+        <label for="category-${category._id}" class="border-l inline-flex items-center justify-between  px-6 my-4 text-lg text-gray-500 bg-white cursor-pointer  peer-checked:text-teal-600 ">
+     ${category.name}</label></input> `;
 
     if (categoryList) {
       categoryList.appendChild(categoryCard);
