@@ -4,7 +4,7 @@ import 'flowbite';
 
 export function init() {
   document.querySelector('#header-wrapper').innerHTML = `<header
-  class="w-full h-[80px] lg:px-48 px-32 py-4 pb-0 flex justify-between items-center shadow-sm  fixed left-0 top-0 bg-white bg-opacity-50  z-[100]"
+  class="w-full h-[80px] lg:px-42 px-32 py-4 pb-0 flex justify-between items-center shadow-sm  fixed left-0 top-0 bg-white bg-opacity-50  z-[100]"
   >
   <h1 class="text-center text-lg"><a href="/"><img class='w-[180px]' src='/images/mngmng_logo.png'/></a></h1>
   

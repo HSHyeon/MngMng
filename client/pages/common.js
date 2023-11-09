@@ -1,10 +1,12 @@
-const $prevButton = document.getElementById('data-carousel-prev');
-const $nextButton = document.getElementById('data-carousel-next');
+export async function uploadImage(file) {
+  const data = new FormData();
+  data.append('file', file);
+  data.append('upload_preset', import.meta.env.VITE_CLOUDINARY_PRESET);
 
-$prevButton.addEventListener('click', () => {
-  carousel.prev();
-});
-
-$nextButton.addEventListener('click', () => {
-  carousel.next();
-});
+  return fetch(import.meta.env.VITE_CLOUDINARY_URL, {
+    method: 'POST',
+    body: data,
+  })
+    .then((res) => res.json())
+    .then((data) => data.url);
+}

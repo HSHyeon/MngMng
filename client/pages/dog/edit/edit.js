@@ -30,7 +30,7 @@ function bindEvent(document, id) {
     const size = document.size.value;
     const age = document.age.value;
 
-    fetch(`${API_BASE_URL}dogs/${id}`, {
+    fetch(`${API_BASE_URL}/dogs/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ function generatorTemplate(dog) {
 }
 
 async function getDogById(id) {
-  const res = await fetch(`${API_BASE_URL}dogs/${id}`, {
+  const res = await fetch(`${API_BASE_URL}/dogs/${id}`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

@@ -43,7 +43,7 @@ function bindEvent(document, id) {
     const detailAddress = document.detailAddress.value;
     const mainAddress = document.mainAddress.value;
 
-    fetch(`${API_BASE_URL}addresses/${id}`, {
+    fetch(`${API_BASE_URL}/addresses/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -190,8 +190,8 @@ function generatorTemplate(address) {
 }
 
 async function getAddressById(id) {
-  console.log(`${API_BASE_URL}addresses/${id}`);
-  const res = await fetch(`${API_BASE_URL}addresses/${id}`, {
+  console.log(`${API_BASE_URL}/addresses/${id}`);
+  const res = await fetch(`${API_BASE_URL}/addresses/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

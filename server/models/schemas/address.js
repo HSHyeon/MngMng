@@ -19,7 +19,7 @@ const addressSchema = new Schema(
     // 우편번호
     zipCode: {
       type: Number,
-      min: [10000, '유효하지 않은 우편번호입니다.'],
+      min: [1000, '유효하지 않은 우편번호입니다.'],
       max: 99999,
       required: true,
     },
