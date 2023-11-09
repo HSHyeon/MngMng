@@ -18,10 +18,7 @@ router.get(
 router.get('/categories', categoryController.getAllCategories);
 
 // 특정 카테고리 상품 조회
-router.get(
-  '/categories/:name/products',
-  categoryController.getProductsByCategoryName,
-);
+router.get('/categories/:id', categoryController.getProductsByCategoryName);
 
 // 카테고리 생성
 router.post(

@@ -47,11 +47,11 @@ exports.getCategoryByName = async (name) => {
   }
 };
 
-exports.getProductsByCategoryName = async (name) => {
+exports.getProductsByCategoryName = async (id) => {
   const products = await models.Product.find({})
     .populate({
       path: 'category',
-      match: { name },
+      match: { id },
     })
     .exec();
   console.log(products);
@@ -68,9 +68,16 @@ exports.createCategory = async ({ name }) => {
   }
 };
 
-exports.updateCategory = async (_id, name) => {
+exports.updateCategory = async (categoryId, name) => {
   try {
-    await models.Category.updateOne({ _id }, { name }).exec();
+    const updateCategory = await models.Category.findByIdAndUpdate(
+      categoryId,
+      name,
+    );
+    if (!updateCategory) {
+      throw new Error('해당 카테고리를 찾을 수 없습니다.');
+    }
+    return updateCategory;
   } catch (err) {
     throw new Error(err);
   }

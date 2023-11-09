@@ -10,8 +10,10 @@ async function renderContent() {
   console.dir(location);
   const id = location.search.split('=')[1];
   const res = await getDogById(id);
-
+  console.log('===', res);
   if (res.status === 200) {
+    console.log('sdfdsfdsfdsfdsf', res);
+
     const template = generatorTemplate(res.dog);
     content.innerHTML = template;
 

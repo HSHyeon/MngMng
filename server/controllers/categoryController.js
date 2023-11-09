@@ -46,9 +46,9 @@ exports.getCategoryByName = async (req, res, next) => {
 
 exports.getProductsByCategoryName = async (req, res, next) => {
   try {
-    const { name } = req.params;
+    const { id } = req.params;
 
-    const products = await categoryService.getProductsByCategoryName(name);
+    const products = await categoryService.getProductsByCategoryName(id);
     res.status(200).json({ status: 200, products });
   } catch (err) {
     next(err);

@@ -75,19 +75,20 @@ const getDog = async () => {
 
 const renderList = async () => {
   let template = ``;
- 
+
   const res = await getDog();
   console.log(res);
   if (!res.dogs.length) {
     template += `<div class='w-full border-b border-b-zinc-400 py-10 flex justify-between items-center px-10 text-center'>
     <div class='flex-1'>사용자의 강아지 정보가 없습니다.</div>
     </div>`;
-    localStorage.setItem('dog',0);
+    localStorage.setItem('dog', 0);
     dogListEl.insertAdjacentHTML('beforeend', template);
     return;
-  }else localStorage.setItem('dog',1);
+  } else localStorage.setItem('dog', 1);
 
   for (const dog of res.dogs) {
+    console.log(dog);
     template += `<div class='w-full border-b border-b-zinc-400 py-10 flex justify-between items-center px-10 text-center'>
     <div class='flex-1'>${dog.name}</div>
     <div class='w-[100px]'>${dog.age}</div>
